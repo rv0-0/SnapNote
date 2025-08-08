@@ -21,7 +21,11 @@ class ApiService {
   private readonly baseURL: string;
 
   constructor() {
-    this.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    // Use Vercel deployment URL or fallback to localhost
+    this.baseURL = process.env.REACT_APP_API_URL || 
+                   (process.env.NODE_ENV === 'production' 
+                     ? '/api' 
+                     : 'http://localhost:5000/api');
     
     this.api = axios.create({
       baseURL: this.baseURL,

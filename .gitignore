@@ -124,5 +124,9 @@ jest_coverage/
 # Documentation
 docs/build/
 
+# Vercel
+.vercel
+.vercel/*
+
 # Optional: Uncomment if using yarn exclusively
 # package-lock.json

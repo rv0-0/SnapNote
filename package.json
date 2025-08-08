@@ -1,0 +1,25 @@
+{
+  "name": "snapnote",
+  "version": "1.0.0",
+  "description": "SnapNote - Daily One-Minute Journal Platform",
+  "main": "backend/api/index.js",
+  "scripts": {
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "install-deps": "cd backend && npm install && cd ../frontend && npm install",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rv0-0/SnapNote.git"
+  },
+  "author": "rv0-0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
