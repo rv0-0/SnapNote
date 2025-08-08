@@ -217,7 +217,7 @@ const DashboardPage: React.FC = () => {
                 <Button variant="outline" fullWidth>
                   Export Data
                 </Button>
-                <Link to="/settings">
+                <Link to="/settings" className="block">
                   <Button variant="outline" fullWidth>
                     Account Settings
                   </Button>
