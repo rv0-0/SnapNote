@@ -138,10 +138,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   // Initialize user on app start
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     initializeAuth();
-  }, []);
+  }, [initializeAuth]);
 
   const value: AuthContextType = {
     user,

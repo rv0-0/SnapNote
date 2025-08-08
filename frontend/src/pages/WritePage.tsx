@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTimer } from '../hooks/useTimer';
 import { Button } from '../components/Button';
@@ -23,19 +23,7 @@ const WritePage: React.FC = () => {
     onComplete: handleTimerComplete
   });
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    checkCanWrite();
-  }, []);
-
-  useEffect(() => {
-    // Focus textarea when component mounts
-    if (textareaRef.current) {
-      textareaRef.current.focus();
-    }
-  }, []);
-
-  const checkCanWrite = async () => {
+  const checkCanWrite = useCallback(async () => {
     try {
       const response = await apiService.canWriteToday();
       if (!response.canWrite) {
@@ -47,7 +35,18 @@ const WritePage: React.FC = () => {
       console.error('Failed to check write status:', error);
       navigate('/dashboard');
     }
-  };
+  }, [navigate, setCanWrite]);
+
+  useEffect(() => {
+    checkCanWrite();
+  }, [checkCanWrite]);
+
+  useEffect(() => {
+    // Focus textarea when component mounts
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, []);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newContent = e.target.value;
